@@ -1,0 +1,167 @@
+<!-- Credit for dropdown CSS inspiration: 
+     https://www.w3schools.com/howto/howto_css_dropdown.asp -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cheesecake Order Form</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            background-color: beige;
+            margin: 0;
+            padding: 0;
+        }
+        /* Container for form */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+         /* Style for organizing form inputs */
+         .form-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        /* Style for notes container */
+        .notes-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 10px;
+        }
+        /* Text area box style for notes */
+        .notes-box {
+            width: 500px;
+            height: 70px;
+        }
+        /* Button styling */
+        button {
+            background-color: #ff9933;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        /* Styling for radio group */
+        .radio-group {
+            margin-top: -10px;
+        }
+         /* Dropdown container styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        /* Dropdown button styling */
+        .dropbtn {
+            background-color: brown;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        /* Dropdown item styling */
+        .dropdown-content a {
+            color: black;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+        }
+        /* Hover effect for dropdown items */
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        /* Show dropdown content when hovering over dropdown */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        /* Change dropdown button color on hover */
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+         /* Header for orders section */
+        .order-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cheesecake Order Form</h1>
+
+        <!-- Cheesecake image -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg" 
+             width="200" height="200" alt="Cheesecake Image">  
+        
+        <!-- Quantity selection section -->
+        <div class="form-row" id="quantity-section">
+            <p id="quantity-topping">Quantity Topping</p>
+            <select id="quantity" name="Quantity">
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+            </select>
+        </div>
+        
+        <div class="radio-group" id="topping-section">
+            <input type="radio" id="flavor-plain" name="flavor" value="Plain">Plain<br>
+            <input type="radio" id="flavor-cherry" name="flavor" value="Cherry">Cherry<br>
+            <input type="radio" id="flavor-choc" name="flavor" value="Chocolate">Chocolate
+        </div>
+        
+        <!-- Flavor selection using radio buttons -->
+        <form id="order-form">
+            <div class="notes-container">
+                <label for="notes">Notes:</label>
+                <textarea id="notes" class="notes-box" placeholder="Enter any special instructions here"></textarea>
+            </div>
+            
+            <button type="button" id="order-button">Order</button>
+        </form>
+        
+        <!-- Orders section with a dropdown for selecting months -->
+        <div class="order-header">
+            <h2>Orders for</h2>
+            <div class="dropdown">
+                <button class="dropbtn">Jan</button>
+                <div class="dropdown-content">
+                    <a href="#">Jan</a>
+                    <a href="#">Feb</a>
+                    <a href="#">Mar</a>
+                    <a href="#">Apr</a>
+                    <a href="#">May</a>
+                    <a href="#">Jun</a>
+                    <a href="#">Jul</a>
+                    <a href="#">Aug</a>
+                    <a href="#">Sep</a>
+                    <a href="#">Oct</a>
+                    <a href="#">Nov</a>
+                    <a href="#">Dec</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- List of orders -->
+        <ul>
+            <li>11 cherry</li>
+            <li>17 chocolate</li>
+            <li>31 plain</li>
+        </ul>
+    </div>
+    
+    <script src="public/javascripts/main.js></script>
+
+</body>
+</html>
