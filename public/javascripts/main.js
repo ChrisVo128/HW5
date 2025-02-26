@@ -1,3 +1,5 @@
+// Christopher Vo
+
 $(document).ready(function () {
             // Change the selected month in the dropdown when a month is clicked
             $(".dropdown-content a").click(function (e) {
