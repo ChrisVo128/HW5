@@ -6,7 +6,8 @@ const dbms = require('./dbms.js');  // import the database module
 
 // handle POST request to get orders for a specific month
 router.post('/', function(req, res) {
-    const month = req.body.month;  // get the month from the request
+    const month = parseInt(req.body.month);
+    console.log('Requested month:', month); // Add this for debugging
 
     // SQL query to get orders with topping details for the specified month
     const query = `
@@ -18,9 +19,12 @@ router.post('/', function(req, res) {
 
     dbms.dbquery(query, (err, result) => {
         if (err) {
+            console.error('Database error:', err);
             res.status(500).json({ error: 'Database error' });
             return;
         }
+
+        console.log('Query results:', result); // Add this for debugging
 
         // calculate total and format orders
         let total = 0;
