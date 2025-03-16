@@ -1,16 +1,15 @@
 // Christopher Vo
 
 $(document).ready(function () {
-    // function to load and display orders for a month
+    // Function to load and display orders for a month
     function loadOrders(month) {
         $.ajax({
             url: '/orders',
             method: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({ month: parseInt(month) }),
+            data: JSON.stringify({ month: month }),
             success: function(data) {
-                console.log('Received data:', data); // Add this for debugging
-                const orderResults = $('ul'); 
+                const orderResults = $('ul');  // or whatever container you're using
                 orderResults.empty();
                 
                 if (data.orders && data.orders.length > 0) {
@@ -22,20 +21,19 @@ $(document).ready(function () {
                     orderResults.append('<li>No orders for this month</li>');
                 }
             },
-            error: function(err) {
-                console.error('Error:', err); // Add this for debugging
+            error: function() {
                 alert('Error fetching orders. Please try again.');
             }
         });
     }
 
-    // handle month selection
+    // Handle month selection
     $("#monthSelect").change(function() {
         const month = $(this).val();
         loadOrders(month);
     });
 
-    // handle order submission
+    // Handle order submission
     $("#order-button").click(function () {
         const topping = $("input[name='flavor']:checked").val();
         const quantity = $("#quantity").val();
@@ -73,7 +71,7 @@ $(document).ready(function () {
                 $("#quantity-section").remove();
                 $("#topping-section").remove();
 
-                // reload orders for the current month after placing order
+                // Reload orders for the current month after placing order
                 loadOrders(selectedMonth);
             },
             error: function() {
@@ -82,7 +80,7 @@ $(document).ready(function () {
         });
     });
 
-    // load initial orders when page loads
+    // Load initial orders when page loads
     const initialMonth = $("#monthSelect").val();
     loadOrders(initialMonth);
 });
