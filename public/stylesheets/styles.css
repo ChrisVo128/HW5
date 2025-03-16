@@ -32,3 +32,37 @@ button {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
+
+/* Style for the month select dropdown */
+select.dropbtn {
+    background-color: brown;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+select.dropbtn:hover {
+    background-color: #3e8e41;
+}
+
+/* Style for the orders display */
+#orderResults {
+    margin-top: 20px;
+    width: 80%;
+    max-width: 600px;
+}
+
+#orderResults ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#orderResults li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
