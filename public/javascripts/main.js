@@ -1,7 +1,7 @@
 // Christopher Vo
 
 $(document).ready(function () {
-    // Function to load orders for a month
+    // Function to load and display orders for a month
     function loadOrders(month) {
         $.ajax({
             url: '/orders',
@@ -9,16 +9,16 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify({ month: month }),
             success: function(data) {
-                // Clear existing orders
-                $('ul').empty();
+                const orderResults = $('ul');  // or whatever container you're using
+                orderResults.empty();
                 
                 if (data.orders && data.orders.length > 0) {
                     data.orders.forEach(function(order) {
-                        $('ul').append(`<li>${order.quantity} ${order.topping} ${order.notes ? '- Notes: ' + order.notes : ''}</li>`);
+                        orderResults.append(`<li>${order.quantity} ${order.topping} ${order.notes ? '- Notes: ' + order.notes : ''}</li>`);
                     });
-                    $('ul').append(`<li><strong>Total: $${data.total}</strong></li>`);
+                    orderResults.append(`<li><strong>Total: $${data.total}</strong></li>`);
                 } else {
-                    $('ul').append('<li>No orders for this month</li>');
+                    orderResults.append('<li>No orders for this month</li>');
                 }
             },
             error: function() {
@@ -38,7 +38,7 @@ $(document).ready(function () {
         const topping = $("input[name='flavor']:checked").val();
         const quantity = $("#quantity").val();
         const notes = $("#notes").val();
-        const selectedMonth = $("#monthSelect").val(); // Get currently selected month
+        const selectedMonth = $("#monthSelect").val();
 
         if (!topping) {
             alert("Please select a topping");
@@ -50,7 +50,6 @@ $(document).ready(function () {
             return;
         }
 
-        // Send order to server
         $.ajax({
             url: '/neworder',
             method: 'POST',
@@ -59,7 +58,7 @@ $(document).ready(function () {
                 topping: topping,
                 quantity: quantity,
                 notes: notes,
-                month: selectedMonth // Send selected month
+                month: selectedMonth
             }),
             success: function(response) {
                 $("#order-form").html(`
@@ -72,7 +71,7 @@ $(document).ready(function () {
                 $("#quantity-section").remove();
                 $("#topping-section").remove();
 
-                // Refresh the orders display for current month
+                // Reload orders for the current month after placing order
                 loadOrders(selectedMonth);
             },
             error: function() {
@@ -81,6 +80,7 @@ $(document).ready(function () {
         });
     });
 
-    // Load initial orders for first month
-    loadOrders(1);
+    // Load initial orders when page loads
+    const initialMonth = $("#monthSelect").val();
+    loadOrders(initialMonth);
 });
