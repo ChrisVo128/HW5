@@ -5,7 +5,7 @@ var router = express.Router();
 const dbms = require('./dbms.js');
 
 router.post('/', function(req, res) {
-    const { quantity, topping, notes } = req.body;
+    const { quantity, topping, notes, month } = req.body;
     
     // first get the topping ID based on the topping name
     const toppingQuery = `SELECT T_ID FROM toppings WHERE topping_name = '${topping}'`;
@@ -17,7 +17,6 @@ router.post('/', function(req, res) {
         }
 
         const T_ID = result[0].T_ID;
-        const currentMonth = new Date().getMonth() + 1; // 1-12
         const currentYear = new Date().getFullYear();
 
         // sanitize notes to prevent SQL injection
@@ -25,7 +24,7 @@ router.post('/', function(req, res) {
         
         const insertQuery = `
             INSERT INTO orders (T_ID, QUANTITY, NOTES, MONTH, YEAR) 
-            VALUES (${T_ID}, ${quantity}, '${sanitizedNotes}', ${currentMonth}, ${currentYear})
+            VALUES (${T_ID}, ${quantity}, '${sanitizedNotes}', ${month}, ${currentYear})
         `;
 
         dbms.dbquery(insertQuery, (err, result) => {
