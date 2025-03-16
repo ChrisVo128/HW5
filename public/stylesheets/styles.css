@@ -1,11 +1,39 @@
-/* Christopber Vo */
+/* Christopher Vo */
 
 /* General styles */
 body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /* Primary font */
-    background-color: beige; 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: beige;
     margin: 0;
     padding: 0;
+}
+
+/* Container for form */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Style for organizing form inputs */
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Style for notes container */
+.notes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+/* Text area box style for notes */
+.notes-box {
+    width: 500px;
+    height: 70px;
 }
 
 /* Button styling */
@@ -21,16 +49,17 @@ button {
     margin-top: 15px;
 }
 
-/* Limit dropdown height and enable scrolling */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 160px;
-    max-height: 150px;
-    overflow-y: auto; /* Enables vertical scrolling */
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+/* Styling for radio group */
+.radio-group {
+    margin-top: -10px;
+}
+
+/* Header for orders section */
+.order-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 /* Style for the month select dropdown */
@@ -53,11 +82,13 @@ select.dropbtn:hover {
     margin-top: 20px;
     width: 80%;
     max-width: 600px;
+    padding: 15px;
 }
 
 #orderResults ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 #orderResults li {
@@ -65,4 +96,12 @@ select.dropbtn:hover {
     padding: 10px;
     background-color: #f9f9f9;
     border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Style for the total amount */
+#orderResults li:last-child {
+    margin-top: 20px;
+    font-weight: bold;
+    background-color: #e9e9e9;
 }
